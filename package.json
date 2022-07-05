@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "core-js": "^3.8.3",
@@ -35,9 +36,9 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
-   "config": {
- "commitizen": {
- "path": "node_modules/cz-customizable"
- }
- }
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  }
 }
