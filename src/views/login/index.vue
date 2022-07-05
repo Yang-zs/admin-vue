@@ -26,7 +26,7 @@
               v-model="loginForm.code"
               placeholder="验证码"
             ></el-input>
-            <button @click="getCode(regForm)" class="code-btn">
+            <button class="code-btn">
               <!-- <span v-show="show">发送验证码</span> -->
               <span class="count" @click="clickCapture"
                 ><img src="" alt="" /><img :src="imgCode" alt=""
@@ -51,14 +51,16 @@ import { reactive, ref } from 'vue'
 import login from '../../api/login'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import menus from '../../api/menus'
 const router = useRouter()
 // 返回来的验证内容
 const imgCode = ref()
 // 返回来的token
 const teken = ref()
+// 表单
 const loginForm = reactive({
   username: 'test',
-  password: 1234567,
+  password: '1234567',
   code: ''
 })
 const store = useStore()
@@ -69,7 +71,7 @@ const clickCapture = async () => {
   imgCode.value = res.data.data.captchaImg
   teken.value = res.data.data.token
 }
-// 调用一下
+// 页面初始加载获取验证码
 clickCapture()
 // 登录
 const submitForm = async (ruleFormRef) => {
@@ -80,9 +82,14 @@ const submitForm = async (ruleFormRef) => {
     teken.value
   )
   if (data.msg !== '操作成功') return
-  router.push('')
-
+  getMenuList()
+  router.push('/userCenter')
   console.log(data, '登录')
+}
+// 获取侧边导航
+const getMenuList = async () => {
+  const response = await menus.getMenu()
+  console.log(response, '侧边导航信息')
 }
 // 表单验证规则
 const rules = reactive({
@@ -128,6 +135,10 @@ const rules = reactive({
       width: 400px;
       height: 50px;
     }
+  }
+  .code-btn {
+    border: 0;
+    margin-top: 6px;
   }
 }
 </style>

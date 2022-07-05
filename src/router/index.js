@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-
 // const routes = [
 //   {
 //     path: '/',
@@ -21,6 +20,25 @@ export const publicPath = [
     path: '/login',
     name: 'login',
     component: () => import('../views/login')
+  },
+  {
+    path: '/',
+    redirect: '/index',
+    component: () => import('@/layout'),
+    children: [
+      {
+        path: '/index',
+        component: () => import('@/views/home'),
+        meta: {
+          title: '首页'
+        }
+      },
+      {
+        path: '/userCenter',
+        name: 'userCenter',
+        component: () => import('../views/userCenter')
+      }
+    ]
   }
 ]
 

@@ -14,7 +14,16 @@ const captcha = () => {
   })
 }
 
+// 退出登录
+const logout = () => {
+  return request({
+    url: '/logout',
+    method: 'POST'
+  })
+}
+
 export default {
   login,
-  captcha
+  captcha,
+  logout
 }

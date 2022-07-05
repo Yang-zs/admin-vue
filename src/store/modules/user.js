@@ -1,10 +1,21 @@
 import login from '@/api/login'
+import { setItem, getItem, removeItem } from '../../utils/storage'
 export default {
   namespaced: true,
   state: () => ({
-    token: ''
+    token: getItem('token') || ''
   }),
-  mutations: {},
+  mutations: {
+    setToken(state, token) {
+      state.token = token
+      setItem('token', token)
+      console.log('存储成功')
+    },
+    removeToken() {
+      setItem('token', '')
+      removeItem('token')
+    }
+  },
   actions: {
     // async login({ commit }, payload) {},
     // 获取验证码
