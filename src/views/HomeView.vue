@@ -3,7 +3,10 @@
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <p>22</p>
-    <p>33</p>
+    <p>git cz 提交</p>
+    <p>git hook</p>
+    <p>git hook</p>
+    <p>lint-staged</p>
   </div>
 </template>
 
