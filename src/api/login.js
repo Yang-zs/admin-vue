@@ -21,9 +21,15 @@ const logout = () => {
     method: 'POST'
   })
 }
-
+// 获取用户信息
+const getUserInfo = () => {
+  return request({
+    url: '/sys/userInfo'
+  })
+}
 export default {
   login,
   captcha,
-  logout
+  logout,
+  getUserInfo
 }

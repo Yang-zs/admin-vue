@@ -1,11 +1,6 @@
 import request from '@/utils/request'
-const getMenu = () => {
+export const getMenuList = () => {
   return request({
-    url: '/sys/menu/nav',
-    method: 'POST'
+    url: '/sys/menu/nav'
   })
-}
-
-export default {
-  getMenu
 }

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import loading from './loading'
-import store from '@/store'
+import store from '@/store/index'
 // import { ElMessage } from 'element-plus'
 const service = axios.create({
   baseURL: 'https://www.markerhub.com/vueadmin-java',
@@ -12,8 +12,11 @@ service.interceptors.request.use(
   function (config) {
     // 在发送请求之前做些什么
     loading.open()
+    const token = store.getters.token
+    if (token) {
+      config.headers.Authorization = token
+    }
 
-    // if (token) config.headers.Authorization = token
     return config
   },
   function (error) {
@@ -28,12 +31,10 @@ service.interceptors.response.use(
   function (response) {
     loading.close()
     // 对响应数据做点什么
-    // const token = store.getters.token
-    console.log(store.getters.token, 666)
-    // _showError(response)
-    console.log(response, '响应拦截')
-    // if (response.headers.authorization)
-    //   store.commit('user/setToken', response.headers.authorization)
+    if (response.headers.authorization) {
+      store.commit('user/setToken', response.headers.authorization)
+    }
+
     return response
   },
   function (error) {
@@ -51,7 +52,7 @@ service.interceptors.response.use(
 // }
 
 const request = (options) => {
-  if (options.method.toLowerCase() === 'get') {
+  if (options.method === 'GET') {
     options.params = options.data || {}
   }
   return service(options)

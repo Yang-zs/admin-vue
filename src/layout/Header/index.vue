@@ -23,7 +23,6 @@
 <script setup>
 import { ArrowDown } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
-import user from '../../api/login'
 import { useStore } from 'vuex'
 const router = useRouter()
 const store = useStore()
@@ -31,12 +30,8 @@ const store = useStore()
 const goPersonal = () => {
   router.push('/userCenter')
 }
-const LoginOut = async () => {
-  const { data } = await user.logout()
-  console.log(data, '退出登录状态')
-  if (data.msg !== '操作成功') return
-  store.commit('user/removeToken')
-  router.push('/login')
+const LoginOut = () => {
+  store.commit('user/logout')
 }
 </script>
 

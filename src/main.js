@@ -5,4 +5,6 @@ import store from './store'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import './style/initialization.css'
-createApp(App).use(store).use(ElementPlus).use(router).mount('#app')
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
+createApp(App).use(store).use(ElementPlus).use(router).use(Antd).mount('#app')

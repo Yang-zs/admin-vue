@@ -51,8 +51,8 @@ import { reactive, ref } from 'vue'
 import login from '../../api/login'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import menus from '../../api/menus'
 const router = useRouter()
+
 // 返回来的验证内容
 const imgCode = ref()
 // 返回来的token
@@ -82,14 +82,15 @@ const submitForm = async (ruleFormRef) => {
     teken.value
   )
   if (data.msg !== '操作成功') return
-  getMenuList()
-  router.push('/userCenter')
+  router.push('/')
+  getMenu()
   console.log(data, '登录')
 }
-// 获取侧边导航
-const getMenuList = async () => {
-  const response = await menus.getMenu()
-  console.log(response, '侧边导航信息')
+
+const getMenu = async () => {
+  console.log(213123)
+  const { data } = await store.dispatch('user/getUserInfo')
+  console.log(data, 'menus')
 }
 // 表单验证规则
 const rules = reactive({
