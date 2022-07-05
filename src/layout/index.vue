@@ -4,6 +4,7 @@
     <el-container>
       <el-header>
         <Header></Header>
+        <TagsView></TagsView>
       </el-header>
       <el-main>
         <router-view></router-view>
@@ -13,6 +14,7 @@
 </template>
 
 <script setup>
+import TagsView from '../components/TagsView.vue'
 import Aside from './Aside/index.vue'
 import Header from './Header/index.vue'
 </script>

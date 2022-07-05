@@ -37,6 +37,26 @@ export const publicPath = [
         path: '/userCenter',
         name: 'userCenter',
         component: () => import('../views/userCenter')
+      },
+      {
+        path: '/userList',
+        name: 'userLIst',
+        component: () => import('../views/userList')
+      },
+      {
+        path: '/roleList',
+        name: 'roleList',
+        component: () => import('../views/roleList')
+      },
+      {
+        path: '/menuList',
+        name: 'menuList',
+        component: () => import('../views/menuList')
+      },
+      {
+        path: '/dictList',
+        name: 'dictList',
+        component: () => import('../views/dictList')
       }
     ]
   }
