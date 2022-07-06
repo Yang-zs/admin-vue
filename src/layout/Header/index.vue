@@ -28,7 +28,7 @@ const router = useRouter()
 const store = useStore()
 // 进入个人中心
 const goPersonal = () => {
-  router.push('/userCenter')
+  router.push('/usercenter')
 }
 const LoginOut = () => {
   store.commit('user/logout')

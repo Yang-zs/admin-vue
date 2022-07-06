@@ -1,25 +1,45 @@
 <template>
-  <div>
+  <div class="tagsView">
     <ul>
       <li
-        v-for="(item, index) in $store.getters.tags"
-        :key="item.path"
+        v-for="(item, index) in tagsView"
+        :key="index"
         :class="$route.path === item.path ? 'bgc' : ''"
         @click="$router.push(item.path)"
       >
         {{ item.title }}
-        <span
-          v-show="$route.path !== item.path"
-          @click.stop="$store.commit('tags/delTag', index)"
-          ><close-circle-outlined
-        /></span>
+        <span class="bc" @click.stop="$store.commit('tags/delTag', index)"
+          >x</span
+        >
       </li>
     </ul>
   </div>
 </template>
 
 <script setup>
-import { CloseCircleOutlined } from '@ant-design/icons-vue'
+import { useStore } from 'vuex'
+import { computed, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+const store = useStore()
+const router = useRouter()
+const route = useRoute()
+
+watch(
+  () => router.currentRoute.value.path,
+  (toPath) => {
+    const obj = {
+      path: route.path,
+      title: route.meta.title
+    }
+    store.commit('tags/addTag', obj)
+  },
+  { immediate: true, deep: true }
+)
+const tagsView = computed(() => {
+  return store.getters.tags
+})
+
+console.log(router, '213')
 </script>
 <style lang="scss" scoped>
 ul {
@@ -43,5 +63,11 @@ li {
   background: rgba(0, 0, 0, 0.85);
   border: 1px solid rgba(0, 0, 0, 0.85);
   color: #fff;
+  :hover {
+    display: inline-block;
+    border-radius: 50%;
+    width: 7px;
+    height: 7px;
+  }
 }
 </style>

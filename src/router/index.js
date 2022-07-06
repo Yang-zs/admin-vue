@@ -34,29 +34,34 @@ export const publicPath = [
         }
       },
       {
-        path: '/userCenter',
+        path: '/sys/users',
         name: 'userCenter',
-        component: () => import('../views/userCenter')
+        component: () => import('../views/users'),
+        meta: { title: '用户管理' }
       },
       {
-        path: '/userList',
+        path: '/sys/roles',
         name: 'userLIst',
-        component: () => import('../views/userList')
+        component: () => import('../views/roles'),
+        meta: { title: '角色管理' }
       },
       {
-        path: '/roleList',
+        path: '/sys/menus',
         name: 'roleList',
-        component: () => import('../views/roleList')
+        component: () => import('../views/menus'),
+        meta: { title: '菜单管理' }
       },
       {
-        path: '/menuList',
-        name: 'menuList',
-        component: () => import('../views/menuList')
-      },
-      {
-        path: '/dictList',
+        path: '/sys/dicts',
         name: 'dictList',
-        component: () => import('../views/dictList')
+        component: () => import('../views/dictList'),
+        meta: { title: '数字管理' }
+      },
+      {
+        path: '/usercenter',
+        name: 'usercenter',
+        component: () => import('../views/usercenter'),
+        meta: { title: '个人中心' }
       }
     ]
   }
@@ -65,6 +70,15 @@ export const publicPath = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes: publicPath
+})
+
+// 挂载路由守卫
+router.beforeEach((to, from, next) => {
+  // to and from are both route objects. must call `next`.
+  if (to.path === '/login') return next()
+  const tokenStr = localStorage.getItem('token')
+  if (!tokenStr) return next('/login')
+  next()
 })
 
 export default router

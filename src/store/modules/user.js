@@ -8,7 +8,8 @@ export default {
   state: {
     token: getItem('token') || '',
     userInfo: getItem('userInfo') || {},
-    menus: getItem('menus') || []
+    menus: getItem('menus') || [],
+    tagsArray: getItem('tags') || []
   },
   mutations: {
     setToken(state, token) {
@@ -28,9 +29,12 @@ export default {
       setItem('menus', payload)
     },
     logout(state) {
+      setItem('tags', [])
       state.token = ''
       state.userInfo = {}
+      state.tagsArray = []
       setItem('token', '')
+
       router.push('/login')
     }
   },

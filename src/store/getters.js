@@ -4,7 +4,8 @@ const getters = {
     return JSON.stringify(state.user.userInfo) === '{}'
   },
   userInfo: (state) => state.user.userInfo,
-  tags: (state) => state.tags.tagsArray
+  tags: (state) => state.tags.tagsArray,
+  menus: (state) => state.user.menus
 }
 
 export default getters

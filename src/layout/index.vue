@@ -4,9 +4,9 @@
     <el-container>
       <el-header>
         <Header></Header>
-        <TagsView></TagsView>
       </el-header>
       <el-main>
+        <TagsView></TagsView>
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -46,6 +46,10 @@ import Header from './Header/index.vue'
 
   body > .el-container {
     height: 100%;
+  }
+  .el-sub-menu__title {
+    margin-left: -10px;
+    // padding: -20px;
   }
 }
 </style>
