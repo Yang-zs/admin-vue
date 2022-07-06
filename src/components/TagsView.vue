@@ -63,11 +63,5 @@ li {
   background: rgba(0, 0, 0, 0.85);
   border: 1px solid rgba(0, 0, 0, 0.85);
   color: #fff;
-  :hover {
-    display: inline-block;
-    border-radius: 50%;
-    width: 7px;
-    height: 7px;
-  }
 }
 </style>
